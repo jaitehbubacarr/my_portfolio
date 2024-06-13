@@ -1,5 +1,4 @@
 import streamlit as st
-import plotly.express as px
 
 # Custom CSS for styling
 st.markdown("""
@@ -7,7 +6,7 @@ st.markdown("""
         .main {
             background-color: #111;
             color: #fff;
-            font-family: 'Tahoma';
+            font-family: 'Arial';
         }
         .sidebar .sidebar-content {
             background-color: #111;
@@ -73,8 +72,8 @@ elif options == "Skills":
         "Microsoft Applications": 95,
         "Server Management": 80
     }
-    fig = px.bar(x=list(skills.keys()), y=list(skills.values()), labels={'x':'Skills', 'y':'Proficiency (%)'}, title="Skills Proficiency")
-    st.plotly_chart(fig)
+    for skill, proficiency in skills.items():
+        st.write(f"{skill}: {'█' * (proficiency // 10)} {proficiency}%")
 
 elif options == "Education":
     st.header("Education")
@@ -131,8 +130,8 @@ elif options == "Projects":
 elif options == "Contact":
     st.header("Contact")
     st.write("### Get in touch")
-    st.text_input("Name")
-    st.text_input("Email")
-    st.text_area("Message")
+    name = st.text_input("Name")
+    email = st.text_input("Email")
+    message = st.text_area("Message")
     if st.button("Send"):
-        st.write("Message sent!")
+        st.write("Thank you for your message!")
